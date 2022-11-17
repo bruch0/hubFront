@@ -1,11 +1,11 @@
-import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import GlobalStyles from "./Components/Organisms/GlobalStyles";
+import Login from "./Pages/Login";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Login />,
   },
 ]);
 
