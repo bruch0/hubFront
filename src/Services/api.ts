@@ -5,6 +5,14 @@ const api = axios.create({
     process.env.NODE_ENV === "production" ? "" : "http://localhost:4000/",
 });
 
+function configAuth(token: string) {
+  return {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  };
+}
+
 const signUp = ({
   name,
   email,
@@ -27,4 +35,7 @@ const signIn = ({
   password: string;
 }): any => api.post("/signin", { email, password });
 
-export { signUp, signIn };
+const getCompanies = ({ token }: { token: string }): any =>
+  api.get("/companies", configAuth(token));
+
+export { signUp, signIn, getCompanies };

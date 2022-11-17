@@ -20,5 +20,6 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
+    "@react-hooks/exhaustive-deps": "off",
   },
 };
