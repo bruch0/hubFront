@@ -17,9 +17,14 @@ const signUp = ({
   password: string;
   phone: string;
   address: string;
-}) => api.post("/signup", { name, email, password, phone, address });
+}): any => api.post("/signup", { name, email, password, phone, address });
 
-const signIn = ({ email, password }: { email: string; password: string }) =>
-  api.post("/signin", { email, password });
+const signIn = ({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}): any => api.post("/signin", { email, password });
 
 export { signUp, signIn };

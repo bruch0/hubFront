@@ -35,15 +35,16 @@ export default function Login() {
     event.preventDefault();
 
     signIn({ email, password })
-      .then((response) => {
+      .then(async (response: any) => {
         storeUserInfo(response.data.sessionToken);
         navigate("/home");
       })
-      .catch(({ response }) =>
-        Swal.fire({
-          icon: "error",
-          title: response.data,
-        })
+      .catch(
+        async ({ response }: { response: any }) =>
+          await Swal.fire({
+            icon: "error",
+            title: response.data,
+          })
       );
   };
 

@@ -1,9 +1,9 @@
-const storeUserInfo = (userInfo: any) =>
+const storeUserInfo = (userInfo: any): void =>
   localStorage.setItem("userInfo", userInfo);
 
-const getUserInfo = () =>
+const getUserInfo = (): string =>
   JSON.parse(localStorage.getItem("univesityInfo") ?? "");
 
-const removeUserInfo = () => localStorage.removeItem("userInfo");
+const removeUserInfo = (): void => localStorage.removeItem("userInfo");
 
 export { storeUserInfo, getUserInfo, removeUserInfo };

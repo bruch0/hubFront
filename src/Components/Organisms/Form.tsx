@@ -33,7 +33,7 @@ export default function Form({
         />
       ))}
       <CustomButton text={submitText} type="submit" />
-      {belowSubmitText && <CustomText Child={belowSubmitText} />}
+      {belowSubmitText != null && <CustomText Child={belowSubmitText} />}
     </FormHolder>
   );
 }

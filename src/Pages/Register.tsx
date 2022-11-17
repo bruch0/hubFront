@@ -54,11 +54,12 @@ export default function Register() {
 
     signUp({ name, email, password, phone, address })
       .then(() => navigate("/"))
-      .catch(({ response }) =>
-        Swal.fire({
-          icon: "error",
-          title: response.data,
-        })
+      .catch(
+        async ({ response }: { response: any }) =>
+          await Swal.fire({
+            icon: "error",
+            title: response.data,
+          })
       );
   };
 
