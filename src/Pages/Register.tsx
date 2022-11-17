@@ -4,15 +4,23 @@ import styled from "styled-components";
 import Swal from "sweetalert2";
 
 import Form from "../Components/Organisms/Form";
-import { signIn } from "../Services/api";
-import { storeUserInfo } from "../Services/localStorage";
+import { signUp } from "../Services/api";
 
-export default function Login() {
+export default function Register() {
+  const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
   const navigate = useNavigate();
 
   const inputMap = [
+    {
+      type: "text",
+      placeholder: "Nome",
+      value: name,
+      setValue: (value: string) => setName(value),
+    },
     {
       type: "email",
       placeholder: "E-mail",
@@ -25,20 +33,27 @@ export default function Login() {
       value: password,
       setValue: (value: string) => setPassword(value),
     },
+    {
+      type: "text",
+      placeholder: "Endereço",
+      value: address,
+      setValue: (value: string) => setAddress(value),
+    },
+    {
+      type: "text",
+      placeholder: "Telefone",
+      value: phone,
+      setValue: (value: string) => setPhone(value),
+    },
   ];
 
-  const registerButton = () => (
-    <Link to="/register">Não possui conta? Registre-se agora!</Link>
-  );
+  const loginButton = () => <Link to="/">Já possui conta? entre agora!</Link>;
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
-    signIn({ email, password })
-      .then((response) => {
-        storeUserInfo(response.data.sessionToken);
-        navigate("/home");
-      })
+    signUp({ name, email, password, phone, address })
+      .then(() => navigate("/"))
       .catch(({ response }) =>
         Swal.fire({
           icon: "error",
@@ -52,9 +67,9 @@ export default function Login() {
       <Form
         onSubmit={onSubmit}
         inputs={inputMap}
-        header="Faça seu login"
-        submitText="Entrar"
-        belowSubmitText={registerButton}
+        header="Cadastre-se"
+        submitText="Registrar"
+        belowSubmitText={loginButton}
       />
     </PageBackground>
   );
